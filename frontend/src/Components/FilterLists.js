@@ -126,18 +126,18 @@ console.log("ANSWER Timings",anstiming)
     console.log("final ans newupdatedskills",newupdatedSkill)
 
   // Create a new array by combining dataDetails and newarr
-const anotherdataDetails = finalans.map((item, index) => {
-  // Create a copy of the item
-  const newItem = { ...item };
+// const anotherdataDetails = finalans.map((item, index) => {
+//   // Create a copy of the item
+//   const newItem = { ...item };
 
-  // Check if the corresponding newarr item exists and is an array
-  if (ansskillfinal[index] && Array.isArray(ansskillfinal[index])) {
-    // Merge the skills arrays by removing duplicates
-    newItem.skills = Array.from(new Set([...newItem.skills, ...ansskillfinal[index]]));
-  }
+//   // Check if the corresponding newarr item exists and is an array
+//   if (ansskillfinal[index] && Array.isArray(ansskillfinal[index])) {
+//     // Merge the skills arrays by removing duplicates
+//     newItem.skills = Array.from(new Set([...newItem.skills, ...ansskillfinal[index]]));
+//   }
 
-  return newItem;
-});
+//   return newItem;
+// });
 
 const intersection = finalans.filter((detail) =>
   ansskillfinal.some((anotherDetail) => detail.id === anotherDetail.id)
@@ -145,17 +145,17 @@ const intersection = finalans.filter((detail) =>
 const intersectionnew = finalloc.filter((detail) =>
   intersection.some((anotherDetail) => detail.id === anotherDetail.id)
 );
-const intersectionfinal = finalansdur.filter((detail) =>
-intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
-);
-const intersectionstipend = finalanssti.filter((detail) =>
-intersectionfinal.some((anotherDetail) => detail.id === anotherDetail.id)
-);
-const intersectionapp = finalansapp.filter((detail) =>
-intersectionstipend.some((anotherDetail) => detail.id === anotherDetail.id)
-);
+// const intersectionfinal = finalansdur.filter((detail) =>
+// intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
+// );
+// const intersectionstipend = finalanssti.filter((detail) =>
+// intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
+// );
+// const intersectionapp = finalansapp.filter((detail) =>
+// intersectionstipend.some((anotherDetail) => detail.id === anotherDetail.id)
+// );
 const intersectiontype= anstypehome.filter((detail) =>
-intersectionapp.some((anotherDetail) => detail.id === anotherDetail.id)
+intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
 );
 const intersectiontime= anstiming.filter((detail) =>
 intersectiontype.some((anotherDetail) => detail.id === anotherDetail.id)
