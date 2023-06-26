@@ -17,9 +17,9 @@ const FilterLists = () => {
   const [selected, setSelected] = React.useState(["fullstack","marketing"]);
   const [selectedskills, setSelectedskills] = React.useState(["ReactJs","Photoshop"]);
   const [selectedlocation, setSelectedlocation] = React.useState(["kolkata","noida"]);
-  const [selectedDuration, setSelectedDuration] = React.useState([]);
-  const [selectedStipend, setSelectedStipend] = React.useState([]);
-  const [selectedApplicants, setSelectedApplicants] = React.useState([]);
+  const [selectedDuration, setSelectedDuration] = React.useState([6]);
+  const [selectedStipend, setSelectedStipend] = React.useState([10]);
+  const [selectedApplicants, setSelectedApplicants] = React.useState([50]);
   const [selectedhome, setSelectedhome] = React.useState(false);
   const [selectedoffice, setSelectedoffice] = React.useState(false);
   const [selectedpart, setSelectedpart] = React.useState(false);
@@ -84,7 +84,7 @@ console.log("HOME: ",selectedhome," Office: ",selectedoffice)
   //selected duration
 
 const updateddur=renderDuration.map((data)=>{return data.duration})
-const ansdur=updateddur.filter((data)=>selectedDuration===data)
+const ansdur=updateddur.filter((data)=>selectedDuration>=data)
 const finalansdur=renderDuration.filter((data)=>ansdur.includes(data.duration))
 console.log("SELECTED DUARTION",finalansdur);
 
@@ -145,26 +145,27 @@ const intersection = finalans.filter((detail) =>
 const intersectionnew = finalloc.filter((detail) =>
   intersection.some((anotherDetail) => detail.id === anotherDetail.id)
 );
-// const intersectionfinal = finalansdur.filter((detail) =>
-// intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
-// );
-// const intersectionstipend = finalanssti.filter((detail) =>
-// intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
-// );
-// const intersectionapp = finalansapp.filter((detail) =>
-// intersectionstipend.some((anotherDetail) => detail.id === anotherDetail.id)
-// );
+
+
 const intersectiontype= anstypehome.filter((detail) =>
 intersectionnew.some((anotherDetail) => detail.id === anotherDetail.id)
 );
 const intersectiontime= anstiming.filter((detail) =>
 intersectiontype.some((anotherDetail) => detail.id === anotherDetail.id)
 );
-
+const intersectionfinal = finalansdur.filter((detail) =>
+intersectiontime.some((anotherDetail) => detail.id === anotherDetail.id)
+);
+const intersectionstipend = finalanssti.filter((detail) =>
+intersectionfinal.some((anotherDetail) => detail.id === anotherDetail.id)
+);
+const intersectionapp = finalansapp.filter((detail) =>
+intersectionstipend.some((anotherDetail) => detail.id === anotherDetail.id)
+);
 // console.log(intersection);
-console.log("Filtered Datta",intersectiontime);
+console.log("Filtered Datta",intersectionapp);
 
-    setRenderItem(intersectiontime);
+    setRenderItem(intersectionapp);
 
   }
 
@@ -327,7 +328,7 @@ console.log("Filtered Datta",intersectiontime);
             <div>
               <div className='text-slate-700 text-lg font-bold'>Duration(Months)</div>
               <Slider
-                    defaultValue={6}
+                    defaultValue={selectedDuration}
                     min={1}
                     step={1}
                     max={6}
@@ -351,7 +352,7 @@ console.log("Filtered Datta",intersectiontime);
              <div>
               <div className='text-slate-700 text-lg font-bold'>Stipend(In K rupees)</div>
               <Slider
-                    defaultValue={10}
+                    defaultValue={selectedStipend}
                     min={0}
                     step={10}
                     max={30}
@@ -366,7 +367,7 @@ console.log("Filtered Datta",intersectiontime);
             <div>
               <div className='text-slate-700 text-lg font-bold'>Applicants(no. who applied)</div>
               <Slider
-                    defaultValue={100}
+                    defaultValue={selectedApplicants}
                     min={0}
                     step={50}
                     max={150}
