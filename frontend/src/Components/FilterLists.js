@@ -90,7 +90,7 @@ console.log("SELECTED DUARTION",finalansdur);
 
 //selected stipend
 const updatedsti=renderStipend.map((data)=>{return data.stipends})
-const anssti=updatedsti.filter((data)=>selectedStipend*1000>=data)
+const anssti=updatedsti.filter((data)=>selectedStipend*1000<=data)
 const finalanssti=renderStipend.filter((data)=>anssti.includes(data.stipends))
 console.log("Stipend",finalanssti);
 
